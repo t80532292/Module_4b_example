@@ -70,3 +70,38 @@ var bookList = [
 		read: false
 	}
 ];
+
+var _ = require('underscore');
+
+function getBooks() {
+	return bookList;
+}
+
+function getBook(id) {
+	id = parseInt(id, 10);
+	return _.find(bookList, function(book) {
+		return book._id === id;
+	});
+
+}
+
+function addBook(book) {
+    if (book) {
+        bookList.push(book);
+    }
+}
+
+function removeBook(id) {
+	id = parseInt(id, 10);
+	var index = _.findIndex(bookList, function(book) {
+		return book._id === id;
+	});
+	bookList.splice(index, 1);
+}
+
+module.exports = {
+	getBooks: getBooks,
+	getBook: getBook,
+    addBook: addBook,
+    removeBook: removeBook
+}
